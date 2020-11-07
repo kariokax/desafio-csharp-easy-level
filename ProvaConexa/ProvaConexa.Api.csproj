@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProvaConexa.Model\ProvaConexa.Repositorio.csproj" />
+    <ProjectReference Include="..\ProvaConexa.Servico\ProvaConexa.Servico.csproj" />
+  </ItemGroup>
+
+
+</Project>
