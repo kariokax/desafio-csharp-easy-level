@@ -36,13 +36,13 @@ namespace ProvaConexa.Repositorio.Repositorio
             city.Nome = tempCidade.name;
             city.Longitude = tempCidade.coord.lon;
             city.Latitutde = tempCidade.coord.lat;
-            city.Temperatura = temperaturaAtual.Temperatura;
 
 
 
 
             if (temperaturaAtual != null)
             {
+                city.Temperatura = temperaturaAtual.Temperatura;
                 city.Temperatura.Add(temperatura);
 
                 _contexto.Cidade.Update(temperaturaAtual);
@@ -63,9 +63,9 @@ namespace ProvaConexa.Repositorio.Repositorio
 
         }
 
-        public Temperatura Temperatura(double latitude, double longitude)
+        public Temperatura Temperatura(double longitude, double latitude)
         {
-            var tempCidade = _servico.ObterTemperaturaPorLonELat(latitude, longitude);
+            var tempCidade = _servico.ObterTemperaturaPorLonELat(longitude, latitude);
             var temperaturaAtual = _contexto.Cidade.Where(t => t.Id == tempCidade.id).FirstOrDefault();
 
             var temperatura = new Temperatura();
@@ -80,13 +80,13 @@ namespace ProvaConexa.Repositorio.Repositorio
             city.Nome = tempCidade.name;
             city.Longitude = tempCidade.coord.lon;
             city.Latitutde = tempCidade.coord.lat;
-            city.Temperatura = temperaturaAtual.Temperatura;
 
 
 
 
             if (temperaturaAtual != null)
             {
+                city.Temperatura = temperaturaAtual.Temperatura;
                 city.Temperatura.Add(temperatura);
 
                 _contexto.Cidade.Update(temperaturaAtual);
@@ -108,9 +108,7 @@ namespace ProvaConexa.Repositorio.Repositorio
 
         public List<Temperatura> Temperaturas(string cidade)
         {
-            var temperaturaAtual = Temperatura(cidade);
-
-            var city = _contexto.Cidade.Where(t => t.Id == temperaturaAtual.Id).FirstOrDefault();
+            var city = _contexto.Cidade.Where(t => t.Nome.ToLower() == cidade.ToLower()).FirstOrDefault();
             city.Temperatura = _contexto.Temperatura.Where(t => t.Cidade_Id == city.Id &&
                                 t.Data.Month == DateTime.Now.Month).ToList();
 
@@ -120,9 +118,7 @@ namespace ProvaConexa.Repositorio.Repositorio
 
         public List<Temperatura> Temperaturas(double latitude, double longitude)
         {
-            var temperaturaAtual = Temperatura(latitude, longitude);
-
-            var city = _contexto.Cidade.Where(t => t.Id == temperaturaAtual.Id).FirstOrDefault();
+            var city = _contexto.Cidade.Where(t => t.Latitutde == latitude && t.Longitude == longitude ).FirstOrDefault();
             city.Temperatura = _contexto.Temperatura.Where(t => t.Cidade_Id == city.Id &&
                                 t.Data.Month == DateTime.Now.Month).ToList();
 

@@ -37,11 +37,11 @@ namespace ProvaConexa.Api.Controllers
 
         [HttpGet]
         [Route("coordenada")]
-        public async Task<IActionResult> ObterPorCoordenada([FromQuery] double latitude, [FromQuery] double longitude)
+        public async Task<IActionResult> ObterPorCoordenada([FromQuery] double longitude, [FromQuery] double latitude)
         {
             try
             {
-                return Ok(_temperaturaRepositorio.Temperatura(latitude, longitude));
+                return Ok(_temperaturaRepositorio.Temperatura(longitude, latitude));
             }
             catch (Exception e)
             {
