@@ -16,7 +16,7 @@ namespace ProvaConexa.Servico
 
         public OpenWeatherMapService()
         {
-            _key = "417a6fe864617aac00636c2ab50be962";
+            _key = "SuaKeyAqui";
             _cliente.BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/");
             _cliente.DefaultRequestHeaders.Accept.Clear();
             _cliente.DefaultRequestHeaders.Accept.Add(
